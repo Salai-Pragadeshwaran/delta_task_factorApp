@@ -1,0 +1,14 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="android:colorButtonNormal">#4FC3F7</item>
+        <item name="android:fontFamily"> sans-serif </item>
+        <item name="android:textStyle"> bold </item>
+        <item name="colorPrimary">#0288D1</item>
+        <item name="colorPrimaryDark">#01579B</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+</resources>
