@@ -8,14 +8,23 @@
     android:theme="@style/AppTheme"
     tools:context=".MainActivity">
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_replay_white_24dp" />
+
     <View
         android:id="@+id/view"
-        android:layout_width="5dp"
+        android:layout_width="3dp"
         android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="64dp"
-        android:background="#00FFFFFF"
+        android:background="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/constraintLayout"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,6 +57,7 @@
 
         <TextView
             android:id="@+id/scoreView"
+            style="@style/normalText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="40dp"
@@ -70,6 +80,7 @@
 
         <TextView
             android:id="@+id/highScoreView"
+            style="@style/normalText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"

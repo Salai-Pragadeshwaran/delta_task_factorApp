@@ -3,6 +3,7 @@ package com.example.factor
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Color.*
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -13,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import android.os.Vibrator as Vibrator1
-import androidx.core.view.isVisible as isVisible1
 
 
 // TO DO
@@ -23,7 +23,7 @@ import androidx.core.view.isVisible as isVisible1
 // make sure data is not lost when changing orientation - checked
 // change colour only for 1 second - checked
 // crash when no num is submitted - checked
-// Understand shared preferences and the vibrator code
+// Understand shared preferences and the vibrator code - checked
 // change orientation - timer resets
 
 var num = 0
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        fun timeUp(){
+        fun timeUpToast(){
             Toast. makeText( this , "Time up ! The correct answer is $c", Toast. LENGTH_SHORT). show()
         }
 
@@ -95,13 +95,10 @@ class MainActivity : AppCompatActivity() {
                 textString = "0"
                 timerView.text = textString
                 timerView.setTextColor(BLACK)
-                timeUp()
-                vibratePhone()
-                findViewById<ConstraintLayout>(R.id.mainLayout).setBackgroundColor(Color.RED)
+                timeUpToast()
+                wrongAnswer()
                 timerProgress.progress = 100
                 colorTimer.start()
-                setHighScore()
-                score = 0
                 textString = "Current Score: $score"
                 scoreView.text = textString
             }
@@ -124,6 +121,19 @@ class MainActivity : AppCompatActivity() {
         mypreference.setHSCount(highScoreCount)
         textString = "High Score: $highScoreCount"
         highScoreView.text = textString
+
+
+        fab.setOnClickListener{
+            highScoreCount = mypreference.getHSCount()
+            score = 0
+            textString = "Current Score: $score"
+            scoreView.text = textString
+            highScoreCount = 0
+            highScore = highScoreCount
+            mypreference.setHSCount(highScoreCount)
+            textString = "High Score: $highScoreCount"
+            highScoreView.text = textString
+        }
 
         submitNumber.setOnClickListener {
 
@@ -209,6 +219,7 @@ class MainActivity : AppCompatActivity() {
 
         if(num%selectedOption==0) {
             Toast.makeText(this, "Correct answer !", Toast.LENGTH_SHORT).show()
+            correctAnswerSound()
             findViewById<ConstraintLayout>(R.id.mainLayout).setBackgroundColor(rgb(56,142,60))
             score++
             setHighScore()
@@ -216,10 +227,7 @@ class MainActivity : AppCompatActivity() {
 
         else{
             Toast. makeText( this , "Wrong answer, The correct answer is $c", Toast. LENGTH_SHORT). show()
-            vibratePhone()
-            findViewById<ConstraintLayout>(R.id.mainLayout).setBackgroundColor(parseColor("#D32F2F"))
-            setHighScore()
-            score = 0
+            wrongAnswer()
         }
 
         textString = "Current Score: $score"
@@ -227,6 +235,15 @@ class MainActivity : AppCompatActivity() {
         a = 0
         b = 0
         c = 0
+    }
+
+
+    private fun wrongAnswer(){
+        wrongAnswerSound()
+        vibratePhone()
+        findViewById<ConstraintLayout>(R.id.mainLayout).setBackgroundColor(parseColor("#D32F2F"))
+        setHighScore()
+        score = 0
     }
 
 
@@ -266,5 +283,18 @@ class MainActivity : AppCompatActivity() {
             }
     }}
 
+
+    private fun correctAnswerSound(){
+        var mediaPlayer= MediaPlayer.create(this  , R.raw.correct_answer)
+        mediaPlayer.start()
+
+    }
+
+
+    private fun wrongAnswerSound(){
+        var mediaPlayer = MediaPlayer.create(this , R.raw.wrong_answer)
+       mediaPlayer.start()
+
+    }
 
 }

@@ -8,6 +8,8 @@
     android:theme="@style/AppTheme"
     tools:context=".MainActivity">
 
+
+
     <TextView
         android:id="@+id/questionView"
         android:layout_width="wrap_content"
@@ -83,6 +85,7 @@
 
     <TextView
         android:id="@+id/scoreView"
+        style="@style/normalText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -94,6 +97,7 @@
 
     <TextView
         android:id="@+id/highScoreView"
+        style="@style/normalText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -130,4 +134,17 @@
         app:layout_constraintEnd_toEndOf="@+id/timerProgress"
         app:layout_constraintStart_toStartOf="@+id/timerProgress"
         app:layout_constraintTop_toTopOf="@+id/timerProgress" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:elevation="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_replay_white_24dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

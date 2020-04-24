@@ -11,4 +11,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="normalText" parent="AppTheme">
+        <item name="android:textColor">#311B92</item>
+    </style>
+
 </resources>
